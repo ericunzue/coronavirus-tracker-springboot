@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <h1 class="text-center">Coronavirus Tracker Application</h1>
+    <div class="row justify-content-center gap-3">
+        <div class=" col-8 col-sm-10">
+            <div class="card text-center">
+
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <h1 class="card-title" th:text="${totalReportedCases}"></h1>
+                        <p class="card-text">Total cases reported as of today</p>
+                    </blockquote>
+
+                </div>
+                <div class="card-footer ">
+                    <p class="card-text">New cases reported since previous day</p>
+                    <p class="card-text" th:text="${totalNewCases}"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class=" col-8 col-sm-10">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>Total cases</th>
+                        <th>Escalation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="locationStat : ${locationStats}">
+                        <td th:text="${locationStat.country}"></td>
+                        <td th:text="${locationStat.state}" ></td>
+                        <td class=" text-center" th:text="${locationStat.latestTotalCases}">0</td>
+                        <td class=" text-center" th:text="'+' + ${locationStat.diffFromPrevDay}">0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
